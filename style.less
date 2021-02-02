@@ -1,0 +1,83 @@
+@ff: Roboto, sans-serif;
+@fz: 17px;
+@lh: 1.5;
+@back: #665f5fbd;
+@back-content: #fae2ee;
+@back-for-btn: #f5f5f5;
+@maxwidth: 700px;
+@c1: black;
+// @c1: white;
+
+.text-color(@text) when (lightness(@text)>=50%) {
+    color: rgb(202, 68, 68);
+    font-style: italic;
+}
+
+.text-color(@text) when (lightness(@text)<50%) {
+    color: rgb(48, 163, 77);
+    // font-size: 1px;
+    font-weight: 700;
+}
+
+body {
+    margin: 0;
+    background: @back;
+    font-family: @ff;
+    font-size: @fz;
+}
+
+.block {
+    max-width: @maxwidth;
+    margin: 50px auto;
+    .block_btn {
+        display: flex;
+        justify-content: space-around;
+        background: @back-for-btn;
+        padding: 10px;
+        margin-bottom: 5px;
+        .border-radius(5px);
+    }
+}
+.hover-mixin() {
+    &:hover {
+        background-color: #ddd;
+    }
+}
+.btn {
+    padding: 15px 30px;
+    font-size: 20px;
+    background-color: darken(@back-for-btn, 30%);
+    border: 0;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background 0.2s linear;
+    .border-radius(10px);
+    .hover-mixin();
+    &.active {
+        background-color: #5e3ddf;
+        color: #fff;
+    }
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.border-radius(@r) {
+    border-radius: @r;
+}
+
+.block_inner {
+    padding: 30px;
+    background-color: @back-content;
+    .border-radius(5px);
+}
+
+.block_item {
+    display: none;
+    line-height: @lh;
+    .text-color(@c1);
+}
+
+.block_item.active {
+    display: block;
+}
